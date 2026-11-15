@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Больше, чем творчество</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎈</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@1,500&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#FABACB; --pink-d:#F29DB6; --blush:#FFE6EE; --ink:#2F2622; --wine:#8E1B2F;
+  --serif:'Cormorant',Georgia,'Times New Roman',serif; --hand:'Caveat','Segoe Print',cursive;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:var(--hand);font-size:1.5rem;background:var(--pink)}
+.paper{
+  min-height:100vh; padding:clamp(24px,6vw,72px) clamp(18px,5vw,64px) 190px; overflow:hidden;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' fill='none' stroke='%232F2622' stroke-opacity='.16' stroke-linecap='round'%3E%3Cpath d='M20 90 220 20M60 330 300 170 380 200M400 60 590 200M120 520 330 400M430 560 580 410M240 250 270 330'/%3E%3Cpath d='M0 560C150 548 300 570 600 575' stroke-opacity='.3'/%3E%3C/svg%3E"),
+    var(--pink);
+}
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,80px);align-items:center;max-width:1180px;margin:0 auto;min-height:78vh}
+h1{margin:0;font:italic 500 clamp(3.5rem,10.5vw,8.6rem)/.9 var(--serif);letter-spacing:-.025em;overflow-wrap:break-word;hyphens:manual}
+.note{margin:1.1rem 0 0;font-size:1.7rem;transform:rotate(-2deg);transform-origin:left}
+.print{position:relative;margin:0;justify-self:center;width:min(100%,430px);transform:rotate(-3deg);animation:bob 7s ease-in-out infinite}
+.print>img:first-child{display:block;width:100%;aspect-ratio:1;object-fit:cover;border:14px solid var(--blush);box-shadow:9px 11px 0 var(--ink)}
+@keyframes bob{50%{transform:translateY(-12px) rotate(-1.5deg)}}
+/* stickers */
+.stk{position:absolute;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
+.cut{filter:drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff) drop-shadow(3px 5px 4px rgba(47,38,34,.35))}
+.badge{aspect-ratio:1;border-radius:50%;overflow:hidden;border:5px solid var(--blush);background:#000;box-shadow:5px 6px 0 var(--ink)}
+.badge video,.badge img{display:block;width:100%;height:100%;object-fit:cover}
+.pop{animation:pop .5s}
+@keyframes pop{35%{transform:scale(1.18) rotate(6deg)}}
+.s-cat1{width:34%;left:-17%;top:-9%;transform:rotate(-8deg)}
+.s-cat2{width:38%;right:-15%;bottom:-8%;transform:rotate(7deg)}
+.s-heart{width:30%;left:-12%;bottom:6%}
+/* wall */
+.wall{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:clamp(20px,4vw,56px);max-width:1180px;margin:clamp(48px,9vw,120px) auto 0}
+.draw{width:min(78vw,340px);mix-blend-mode:multiply}
+.draw:nth-child(1){transform:rotate(-4deg)}
+.draw:nth-child(4){transform:rotate(3deg)}
+.wall .badge{position:relative;width:190px;height:190px;flex:none}
+.wall .badge:nth-child(2){transform:rotate(5deg)}
+.wall .badge:nth-child(3){transform:rotate(-6deg)}
+/* player dock */
+.dock{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:min(760px,calc(100% - 20px));
+  display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:'thumb meta ctrl' 'thumb line vol';gap:8px 16px;align-items:center;padding:12px 16px;border-radius:20px;
+  background:var(--ink);color:var(--blush);box-shadow:0 10px 30px rgba(47,38,34,.35);font-family:var(--hand);z-index:10}
+.dock .thumb{width:54px;height:54px;border-radius:12px;object-fit:cover;grid-area:thumb}
+.meta{grid-area:meta;min-width:0;line-height:1.05}
+.meta b{display:block;font:italic 500 1.35rem/1.1 var(--serif);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta span{font-size:1.15rem;opacity:.75}
+.ctrl{grid-area:ctrl;display:flex;align-items:center;gap:6px}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;width:40px;height:40px;border-radius:50%;display:grid;place-items:center}
+button:hover{background:rgba(255,230,238,.14)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+button svg{width:22px;height:22px;fill:currentColor}
+#play{width:50px;height:50px;background:var(--pink);color:var(--ink)}
+#play:hover{background:var(--pink-d)}
+#play svg{width:26px;height:26px}
+#play .i-pause,#play.on .i-play{display:none}
+#play.on .i-pause{display:block}
+.line{grid-area:line;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;font-size:1.1rem;font-variant-numeric:tabular-nums}
+.vol{grid-area:vol;justify-self:end;display:flex;align-items:center;gap:2px}
+.vol input{width:84px}
+#mute .i-off,#mute.off .i-on{display:none}
+#mute.off .i-off{display:block}
+input[type=range]{-webkit-appearance:none;appearance:none;height:22px;background:transparent;margin:0;cursor:pointer;--p:0%}
+input[type=range]::-webkit-slider-runnable-track{height:5px;border-radius:3px;background:linear-gradient(to right,var(--pink) var(--p),rgba(255,230,238,.25) var(--p))}
+input[type=range]::-moz-range-track{height:5px;border-radius:3px;background:linear-gradient(to right,var(--pink) var(--p),rgba(255,230,238,.25) var(--p))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--blush);border:0;margin-top:-5.5px}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--blush);border:0}
+input[type=range]:disabled{opacity:.5;cursor:default}
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;min-height:0;padding-top:12px}
+  .print{margin:28px auto 44px;width:min(72%,340px)}
+  .dock{grid-template-areas:'thumb meta vol' 'ctrl ctrl ctrl' 'line line line';padding:10px 12px}
+  .dock .thumb{width:44px;height:44px}
+  .ctrl{justify-content:center}
+  .vol input{width:70px}
+  .paper{padding-bottom:230px}
+}
+@media (prefers-reduced-motion:reduce){.print{animation:none}.pop{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="paper">
+  <main>
+    <section class="hero">
+      <div>
+        <h1>Больше, чем творчество</h1>
+        <p class="note">открытка для тебя</p>
+      </div>
+      <figure class="print">
+        <img src="assets/cover.webp" alt="Девочка, улетающая на воздушном шаре, на розовом фоне">
+        <img class="stk cut s-cat1" src="assets/cat1.webp" alt="Большеглазый котик">
+        <img class="stk cut s-cat2" src="assets/cat2.webp" alt="Котик выглядывает">
+        <div class="stk badge s-heart"><video src="assets/heart.mp4" muted loop autoplay playsinline aria-label="Красное сердце"></video></div>
+      </figure>
+    </section>
+
+    <section class="wall" aria-label="Наклейки">
+      <img class="draw" src="assets/draw1.jpg" alt="Смущённая девочка с сердечками">
+      <div class="stk badge"><video src="assets/roses.mp4" muted loop autoplay playsinline aria-label="Букет красных роз"></video></div>
+      <div class="stk badge"><img src="assets/cat3.webp" alt="Котик прячется"></div>
+      <img class="draw" src="assets/draw2.jpg" alt="Парень с белой розой">
+    </section>
+  </main>
+</div>
+
+<aside class="dock" id="dock" aria-label="Плеер">
+  <img class="thumb" src="assets/cover.webp" alt="">
+  <div class="meta"><b>Больше, чем творчество</b><span>CUPSIZE</span></div>
+  <div class="vol">
+    <button id="mute" type="button" aria-label="Выключить звук">
+      <svg class="i-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+      <svg class="i-off" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.8 8.8 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a9 9 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z"/></svg>
+    </button>
+    <input id="vol" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="Громкость">
+  </div>
+  <div class="ctrl">
+    <button id="stop" type="button" aria-label="Выключить и начать с начала"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></svg></button>
+    <button id="back" type="button" aria-label="Назад на 10 секунд"><svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"/></svg></button>
+    <button id="play" type="button" aria-label="Включить">
+      <svg class="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="i-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+    </button>
+    <button id="fwd" type="button" aria-label="Вперёд на 10 секунд"><svg viewBox="0 0 24 24"><path d="M12 5V1l5 5-5 5V7a6 6 0 1 0 6 6h2a8 8 0 1 1-8-8z"/></svg></button>
+  </div>
+  <div class="line">
+    <span id="cur">0:00</span>
+    <input id="seek" type="range" min="0" max="1" step="any" value="0" disabled aria-label="Перемотка">
+    <span id="dur">0:00</span>
+  </div>
+  <audio id="audio" src="assets/track.mp3" preload="metadata"></audio>
+</aside>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)};
+  var a=$('#audio'),play=$('#play'),seek=$('#seek'),vol=$('#vol'),cur=$('#cur'),dur=$('#dur'),mute=$('#mute'),drag=false;
+  var fmt=function(t){t=Math.max(0,Math.floor(t||0));return Math.floor(t/60)+':'+('0'+t%60).slice(-2)};
+  var fill=function(el){el.style.setProperty('--p',(el.value/el.max*100)+'%')};
+  var ratio=function(){return a.duration?a.currentTime/a.duration:0};
+
+  function ui(){
+    var on=!a.paused;
+    play.classList.toggle('on',on);
+    play.setAttribute('aria-label',on?'Пауза':'Включить');
+  }
+  function tick(){
+    if(drag)return;
+    seek.value=ratio();fill(seek);cur.textContent=fmt(a.currentTime);
+  }
+  function volUi(){
+    var off=a.muted||a.volume===0;
+    mute.classList.toggle('off',off);
+    mute.setAttribute('aria-label',off?'Включить звук':'Выключить звук');
+  }
+
+  play.onclick=function(){a.paused?a.play().catch(function(){}):a.pause()};
+  $('#stop').onclick=function(){a.pause();a.currentTime=0;tick()};
+  $('#back').onclick=function(){a.currentTime=Math.max(0,a.currentTime-10)};
+  $('#fwd').onclick=function(){if(a.duration)a.currentTime=Math.min(a.duration-.1,a.currentTime+10)};
+
+  seek.addEventListener('input',function(){drag=true;fill(seek);cur.textContent=fmt(seek.value*a.duration)});
+  seek.addEventListener('change',function(){a.currentTime=seek.value*a.duration;drag=false});
+
+  vol.addEventListener('input',function(){a.volume=+vol.value;a.muted=a.volume===0;fill(vol)});
+  mute.onclick=function(){
+    if(a.muted||a.volume===0){a.muted=false;if(a.volume===0){a.volume=.8;vol.value=.8;fill(vol)}}
+    else a.muted=true;
+  };
+
+  a.addEventListener('play',ui);a.addEventListener('pause',ui);a.addEventListener('ended',function(){ui();a.currentTime=0;tick()});
+  a.addEventListener('timeupdate',tick);a.addEventListener('volumechange',volUi);
+  a.addEventListener('loadedmetadata',function(){dur.textContent=fmt(a.duration);seek.disabled=false});
+  a.volume=+vol.value;fill(vol);fill(seek);volUi();
+  if(a.readyState>0){dur.textContent=fmt(a.duration);seek.disabled=false}
+
+  if('mediaSession' in navigator){
+    navigator.mediaSession.metadata=new MediaMetadata({title:'Больше, чем творчество',artist:'CUPSIZE',artwork:[{src:'assets/cover.webp',sizes:'1000x1000',type:'image/webp'}]});
+    navigator.mediaSession.setActionHandler('play',function(){a.play()});
+    navigator.mediaSession.setActionHandler('pause',function(){a.pause()});
+    navigator.mediaSession.setActionHandler('seekbackward',function(){$('#back').click()});
+    navigator.mediaSession.setActionHandler('seekforward',function(){$('#fwd').click()});
+  }
+
+  document.querySelectorAll('.stk').forEach(function(s){
+    s.addEventListener('click',function(){s.classList.remove('pop');void s.offsetWidth;s.classList.add('pop')});
+  });
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.querySelectorAll('video').forEach(function(v){v.removeAttribute('autoplay');v.pause()});
+  }
+})();
+</script>
+</body>
+</html>
